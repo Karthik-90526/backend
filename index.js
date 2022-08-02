@@ -78,7 +78,12 @@ const UsermealActivity =require('./db/User_meal_Activity')
         console.log("Obese range")
     }
     console.log(a)
-    res.send(user);
+    res.send({
+        "sleep_per_week":usermeal.sleep_per_week,
+        "allergies":usermeal.allergies,
+        "height":userprofilee.height,
+        "weight":userprofilee.weight
+    });
     
     });
 
