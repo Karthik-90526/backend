@@ -17,10 +17,10 @@ app.get('/',(req,res) =>{
  app.use(express.urlencoded({ extended: false }));
  app.use(helmet());
  app.use(cors());
+ const Userprofile =require('./db/User_profile')
+const Userr =require('./db/User')
+const UsermealActivity =require('./db/User_meal_Activity')
  const port =process.env.PORT || 3000
- const mongoose=require("mongoose");
- //mongoose.connect('mongodb://localhost/my_database');
- mongoose.connect('mongodb+srv://Kumar_123:Karthik123@kumar.fhnzp.mongodb.net/Kumar?retryWrites=true&w=majority');
  
  
  app.post('/blog',(req,res)=>{
@@ -56,7 +56,33 @@ app.get('/',(req,res) =>{
          })
     })
  })*/
- 
+ app.get('/data7/:id',async (req, res)=>{
+    const user = await Userr.findById(req.params.id)
+    const userprofilee = await Userprofile.findOne({"userid":req.params.id})
+    const usermeal = await UsermealActivity.findOne({"userid":req.params.id})
+    console.log(usermeal.sleep_per_week)
+    console.log(usermeal.allergies)  
+    console.log(userprofilee.height)
+    console.log(userprofilee.weight)
+    a=user.height/(user.weight*user.weight)
+    if(a<18.5){
+        console.log("Underweight")
+    }
+    else if(a>18.5 && a<24.9){
+        console.log("good Health")
+    }
+    else if(a>25 && a<29.9 ){
+        console.log("Overweight")
+    }
+    else if(a>30 && a<39.9){
+        console.log("Obese range")
+    }
+    console.log(a)
+    res.send(user);
+    
+    });
+
+
  app.delete('/delete/:id', async (req, res,next) => {
      try {
          const id = req.params.id;
