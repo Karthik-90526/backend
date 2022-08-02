@@ -60,10 +60,6 @@ const UsermealActivity =require('./db/User_meal_Activity')
     const user = await Userr.findById(req.params.id)
     const userprofilee = await Userprofile.findOne({"userid":req.params.id})
     const usermeal = await UsermealActivity.findOne({"userid":req.params.id})
-    console.log(usermeal.sleep_per_week)
-    console.log(usermeal.allergies)  
-    console.log(userprofilee.height)
-    console.log(userprofilee.weight)
     a=user.height/(user.weight*user.weight)
     if(a<18.5){
         console.log("Underweight")
@@ -79,6 +75,8 @@ const UsermealActivity =require('./db/User_meal_Activity')
     }
     console.log(a)
     res.send({
+        "name":user.firstName,
+        "phone":user.phone,
         "sleep_per_week":usermeal.sleep_per_week,
         "allergies":usermeal.allergies,
         "height":userprofilee.height,
