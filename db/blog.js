@@ -17,6 +17,8 @@ const schema = new mongoose.Schema({
     
     displayName:String,
     email:String,
+    password:String,
+    ConformPassword:String
 });
 const Blog =mongoose.model('kumar',schema);
 module.exports=Blog;
