@@ -37,9 +37,9 @@ const UsermealActivity =require('./db/User_meal_Activity')
     
  })
  
- app.get('/:id',async (req,res)=>{
+ app.get('/:email',async (req,res)=>{
       
-      result = await Blog.find()
+      result = await Blog.findOne({"email":req.params.email})
       .then(result=>{
          res.status(200).json({
          data:result
