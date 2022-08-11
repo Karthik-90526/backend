@@ -3,7 +3,7 @@
 mongoose.connect('mongodb+srv://Kumar_123:Karthik123@kumar.fhnzp.mongodb.net/Kumar?retryWrites=true&w=majority');*/
 const mongoose=require("mongoose");
 //mongoose.connect('mongodb://localhost/my_database');
-mongoose.connect('mongodb+srv://Kumar_123:Karthik123@kumar.fhnzp.mongodb.net/Kumar?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://WholesomeEten:wholesome123@wholesomeeten.hjigq.mongodb.net/WholesomeEten?retryWrites=true&w=majority');
 
 /*
 mongoose.connect(
@@ -13,6 +13,7 @@ mongoose.connect(
     useUnifiedTopology: true
   }
 );*/
+/*
 const schema = new mongoose.Schema({
     
     displayName:String,
@@ -20,5 +21,23 @@ const schema = new mongoose.Schema({
     password:String,
     ConformPassword:String
 });
-const Blog =mongoose.model('kumar',schema);
+*/
+const dietSchema=new mongoose.Schema({
+    "name":{
+        type:String,
+        required:true,
+    },
+    "ingredients":[
+        {
+            "Ingredient":String,
+            "quantity":Number,
+            "measurement":String,
+        }
+    ],
+    "description":{
+        type:String,
+        required:true,
+    }
+});
+const Blog =mongoose.model('dietfortheday',dietSchema);
 module.exports=Blog;

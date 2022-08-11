@@ -18,11 +18,11 @@ app.get('/',(req,res) =>{
  app.use(helmet());
  app.use(cors());
  const Userprofile =require('./db/User_profile')
-const Userr =require('./db/User')
-const UsermealActivity =require('./db/User_meal_Activity')
+ const diet =require('./db/diet')
+ const Userr =require('./db/User')
+ const UsermealActivity =require('./db/User_meal_Activity')
  const port =process.env.PORT || 3000
- 
- 
+
  app.post('/blog',(req,res)=>{
  Blog.create(req.body).then((blog)=>{
  res.status(201).send(blog);
@@ -31,6 +31,15 @@ const UsermealActivity =require('./db/User_meal_Activity')
      res.status(400).send(error);
  })
  });
+
+ app.post('/diet',(req,res)=>{
+    Blog.create(req.body).then((blog)=>{
+    res.status(201).send(blog);
+    })
+    .catch((error)=>{
+        res.status(400).send(error);
+    })
+    });
  
  app.get('/', (req,res)=>{
       res.send("Hello world");
