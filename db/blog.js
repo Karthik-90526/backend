@@ -27,6 +27,9 @@ const dietSchema=new mongoose.Schema({
         type:String,
         required:true,
     },
+    "servingSize":{
+        type:Number,
+    },
     "ingredients":[
         {
             "Ingredient":String,
