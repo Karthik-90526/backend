@@ -23,22 +23,36 @@ app.get('/',(req,res) =>{
  const UsermealActivity =require('./db/User_meal_Activity')
  const port =process.env.PORT || 3000
 
- app.post('/blog',(req,res)=>{
- Blog.create(req.body).then((blog)=>{
- res.status(201).send(blog);
- })
- .catch((error)=>{
-     res.status(400).send(error);
- })
+ app.post('/blog',async(req,res)=>{
+    try{
+        var result = await Blog.findOne({"name":req.body.name})
+        if(result===null){
+           await Blog.create(req.body)
+        }
+        else{
+            throw new Error("data already exist")
+        }
+        res.status(200).json({
+            "response":"data uploaded sucsses fully"
+        })
+    }
+    catch(error){
+        res.status(500).json({
+            error:error.message
+        });
+    }
  });
 
- app.post('/diet',(req,res)=>{
-    Blog.create(req.body).then((blog)=>{
-    res.status(201).send(blog);
-    })
-    .catch((error)=>{
-        res.status(400).send(error);
-    })
+ app.post('/diet',async(req,res)=>{
+    console.log(req.body);
+//    var result = await Blog.findOne({"name":req.body.name})
+//     console.log(req.body)
+//     Blog.create(req.body).then((blog)=>{
+//     res.status(201).send(blog);
+//     })
+//     .catch((error)=>{
+//         res.status(400).send(error);
+//     })
     });
  
  app.get('/', (req,res)=>{

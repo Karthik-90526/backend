@@ -39,5 +39,5 @@ const dietSchema=new mongoose.Schema({
         required:true,
     }
 });
-const Blog =mongoose.model('dietfortheday',dietSchema);
+const Blog =mongoose.model('recipe',dietSchema);
 module.exports=Blog;
